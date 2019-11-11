@@ -1,13 +1,7 @@
 document.getElementById('search').addEventListener("submit", e => {
-    search(e.target['city'].value);
-
-    e.preventDefault();
-});
-
-function search(city) {
     axios.get("http://api.openweathermap.org/data/2.5/weather", {
         params: {
-            q: city,
+            q: e.target['city'].value,
             lang: "ru",
             units: "metric",
             appid: "3494b8f1c8f596aee028c113d9cf5e78"
@@ -21,7 +15,8 @@ function search(city) {
         .catch(error => {
             showError(error.response);
         });
-}
+    e.preventDefault();
+});
 
 function show(data) {
     let container = document.getElementsByClassName("container")[0];
