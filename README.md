@@ -6,3 +6,5 @@ Gismeteo 2.0
 Скачать/склонировать репозиторий и открыть файл index.html в Вашем браузере.
 
 Выполнить в консоли npm install -g sass
+
+Выполнить в папке css выполнить sass css.sass css.css
