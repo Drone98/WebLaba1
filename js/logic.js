@@ -1,12 +1,9 @@
 document.getElementById('search').addEventListener("submit", e => {
-    axios.get("http://api.openweathermap.org/data/2.5/weather", {
-        params: {
-            q: e.target['city'].value,
-            lang: "ru",
-            units: "metric",
-            appid: "3494b8f1c8f596aee028c113d9cf5e78"
-        }
-    }, {
+    let mycity = e.target['city'].value;
+    axios.get("http://api.openweathermap.org/data/2.5/weather",
+            search(mycity)
+        ,
+        {
         timeout: 1000
     })
         .then(response => {
@@ -15,8 +12,19 @@ document.getElementById('search').addEventListener("submit", e => {
         .catch(error => {
             showError(error.response);
         });
+
     e.preventDefault();
 });
+
+function search(city) {
+        let params = {
+            q: city,
+            lang: "ru",
+            units: "metric",
+            appid: "3494b8f1c8f596aee028c113d9cf5e78"
+        }
+        return params
+}
 
 function show(data) {
     let container = document.getElementsByClassName("container")[0];
