@@ -1,9 +1,9 @@
-$color: #3FFF33
-$border: 1px solid $color
-$rad: 10px
 $width: 400px
-$margin: 0 auto
-$btn-sz: 42px
+$margin: auto
+$color: #3FFF33
+$border: solid $color
+$rad: 10px
+$btn-size: 42px
 
 form
   width: $width
@@ -15,21 +15,20 @@ input
   padding-left: 10px
   border: $border
   border-radius: $rad 0 0 $rad
-  outline: none
+  //outline: none
 
 button
-  width: $btn-sz
-  height: $btn-sz
+  width: $btn-size
+  height: $btn-size
   border: none
-  background: $color url("../res/lupka.png") no-repeat center
+  background: $color url("../res/lupa.png") no-repeat center
   background-size: 20px
   border-radius: 0 $rad $rad 0
   cursor: pointer
 
 .container
-  margin: $margin
-  margin-top: 20px
   width: $width
+  margin: 20px $margin $margin
   text-align: center
 
 ul

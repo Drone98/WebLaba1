@@ -1,9 +1,7 @@
 document.getElementById('search').addEventListener("submit", e => {
-    let mycity = e.target['city'].value;
-    axios.get("http://api.openweathermap.org/data/2.5/weather",
-            search(mycity)
-        ,
-        {
+    axios.get("http://api.openweathermap.org/data/2.5/weather", {
+        params: search(e.target['city'].value)
+    }, {
         timeout: 1000
     })
         .then(response => {
@@ -12,36 +10,35 @@ document.getElementById('search').addEventListener("submit", e => {
         .catch(error => {
             showError(error.response);
         });
-
     e.preventDefault();
 });
 
 function search(city) {
-        let params = {
-            q: city,
-            lang: "ru",
-            units: "metric",
-            appid: "3494b8f1c8f596aee028c113d9cf5e78"
-        }
-        return params
+    return {q: city,
+        lang: "ru",
+        units: "metric",
+        appid: "664a8b78c394bddfedbff1aa229519a8"}
 }
 
 function show(data) {
     let container = document.getElementsByClassName("container")[0];
+
     let source = document.getElementById("entry-template").innerHTML;
-    let template = Handlebars.compile(source);
+    var template = Handlebars.compile(source);
+
     container.innerHTML = template(data);
 }
 
 function showError(response) {
     let container = document.getElementsByClassName("container")[0];
-    let error = "Проблемы с интернет-соединением.";
+
+    let error = "Проблемы с интернет соединением";
 
     if (response) {
         if (response.status === 404) {
-            error = "Город не найден."
+            error = "Город не найден"
         } else {
-            error = "Проблемы с сервером."
+            error = "Проблемы с сервером"
         }
     }
 
@@ -49,5 +46,7 @@ function showError(response) {
     let template = Handlebars.compile(source);
     let data = { "error": error };
 
+
     container.innerHTML = template(data);
+
 }
