@@ -7,4 +7,4 @@ Gismeteo 2.0
 
 Выполнить в консоли npm install -g sass
 
-Выполнить в папке styles выполнить sass styles/style.sass styles/style.css
+Выполнить в папке styles выполнить sass style.sass style.css

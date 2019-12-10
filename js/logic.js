@@ -1,17 +1,19 @@
-document.getElementById('search').addEventListener("submit", e => {
-    axios.get("http://api.openweathermap.org/data/2.5/weather", {
-        params: search(e.target['city'].value)
-    }, {
-        timeout: 1000
-    })
-        .then(response => {
-            show(response.data)
+function start(){
+    document.getElementById('search').addEventListener("submit", e => {
+        axios.get("http://api.openweathermap.org/data/2.5/weather", {
+            params: search(e.target['city'].value)
+        }, {
+            timeout: 1000
         })
-        .catch(error => {
-            showError(error.response);
-        });
-    e.preventDefault();
-});
+            .then(response => {
+                show(response.data)
+            })
+            .catch(error => {
+                showError(error.response);
+            });
+        e.preventDefault();
+    });
+}
 
 function search(city) {
     return {q: city,
@@ -21,16 +23,16 @@ function search(city) {
 }
 
 function show(data) {
-    let container = document.getElementsByClassName("container")[0];
+    let container = this.document.getElementsByClassName("container")[0];
 
-    let source = document.getElementById("entry-template").innerHTML;
+    let source = this.document.getElementById("entry-template").innerHTML;
     var template = Handlebars.compile(source);
 
     container.innerHTML = template(data);
 }
 
 function showError(response) {
-    let container = document.getElementsByClassName("container")[0];
+    let container = this.document.getElementsByClassName("container")[0];
 
     let error = "Проблемы с интернет соединением";
 
@@ -42,11 +44,11 @@ function showError(response) {
         }
     }
 
-    let source = document.getElementById("error-template").innerHTML;
+    let source = this.document.getElementById("error-template").innerHTML;
     let template = Handlebars.compile(source);
     let data = { "error": error };
 
-
     container.innerHTML = template(data);
-
 }
+
+module.exports = {start, search, show, showError};

@@ -1,0 +1,30 @@
+{
+  "name": "laba1",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^2.0.1",
+    "mocha": "^2.5.3"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [],
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "enzyme": "^3.10.0",
+    "jsdom": "^15.2.1",
+    "sinon": "^7.5.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Drone98/WebLaba1.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Drone98/WebLaba1/issues"
+  },
+  "homepage": "https://github.com/Drone98/WebLaba1#readme"
+}
