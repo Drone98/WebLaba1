@@ -1,25 +1,32 @@
 function start(){
     document.getElementById('search').addEventListener("submit", e => {
-        axios.get("http://api.openweathermap.org/data/2.5/weather", {
-            params: search(e.target['city'].value)
-        }, {
-            timeout: 1000
-        })
-            .then(response => {
-                show(response.data)
-            })
-            .catch(error => {
-                showError(error.response);
-            });
+        var result = async () => await search(e.target['city'].value).data;
+        console.log("lol1:   ", result());
         e.preventDefault();
     });
 }
 
-function search(city) {
-    return {q: city,
-        lang: "ru",
-        units: "metric",
-        appid: "664a8b78c394bddfedbff1aa229519a8"}
+async function search(city) {
+    await axios.get("http://api.openweathermap.org/data/2.5/weather", {
+        params: {
+            q: city,
+            lang: "ru",
+            units: "metric",
+            appid: "664a8b78c394bddfedbff1aa229519a8"
+        }
+    }, {
+        timeout: 1000
+    })
+        .then( response => {
+            this.result = response.data;
+            console.log("data:   ", result);
+        })
+        .catch( error => {
+            this.result = error.response;
+            console.log("error:   ", result);
+        });
+    console.log("result:   ", result);
+    return this.result;
 }
 
 function show(data) {
@@ -51,4 +58,4 @@ function showError(response) {
     container.innerHTML = template(data);
 }
 
-module.exports = {start, search, show, showError};
+//module.exports = {start, search, show, showError};
