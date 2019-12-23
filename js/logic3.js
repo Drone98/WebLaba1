@@ -1,29 +1,9 @@
 function start(){
     document.getElementById('search').addEventListener("submit", e => {
-         getByName(e.target['city'].value,
-            this.show.bind(this),
-            this.showError.bind(this));
-
+        var result = async () => await search(e.target['city'].value).data;
+        console.log("lol1:   ", result());
         e.preventDefault();
     });
-}
-
-function getByName(name, then, error) {
-    axios.get("http://api.openweathermap.org/data/2.5/weather", {
-            params: {
-                q: name,
-                lang: "ru",
-                units: "metric",
-                appid: "3494b8f1c8f596aee028c113d9cf5e78"
-            }
-        }
-    )
-        .then((response) => {
-            then(response);
-        })
-        .catch((err) => {
-            error(err);
-        })
 }
 
 async function search(city) {
@@ -39,7 +19,7 @@ async function search(city) {
     })
         .then( response => {
             this.result = response.data;
-            console.log("data:   ", result);
+            console.log("data:   ", this.result);
         })
         .catch( error => {
             this.result = error.response;
@@ -77,5 +57,3 @@ function showError(response) {
 
     container.innerHTML = template(data);
 }
-
-//module.exports = {start, search, show, showError};
