@@ -1,14 +1,14 @@
-function start(){
-    document.getElementById('search').addEventListener("submit",  e => {
-       search(e.target['city'].value, axios).then(result => {
+function kikstarter(event){
+    event.preventDefault();
+        search(event.target['city'].value, axios).then(result => {
             if(result.data){
                 this.showError(result);
             } else {
                 this.show(result);
             }
-        });
 
-        e.preventDefault();
+
+
     });
 }
 
@@ -60,4 +60,4 @@ function showError(response) {
     container.innerHTML = template(data);
 }
 
-module.exports = {start, search, show, showError};
+module.export = {kikstarter, search, show, showError}

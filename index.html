@@ -7,9 +7,9 @@
 </head>
 
 <body>
-<form id="search">
+<form id="search" onsubmit="start(event)" action="#">
     <input name="city" type="text" placeholder="Введите название города"/>
-    <button type="submit"></button>
+    <button id="btnSubmit" type="submit"></button>
 </form>
 
 <div id="container" class="container">
@@ -33,7 +33,6 @@
 <script src="libs/handlebars-v4.4.3.js"></script>
 <script src="libs/axios.min.js"></script>
 <script src="js/logic.js"></script>
-<script>start()</script>
 </body>
 
 </html>

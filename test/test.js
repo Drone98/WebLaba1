@@ -1,9 +1,7 @@
-import * as fetchMock from "sinon";
-
 const sinon = require('sinon');
 const mocha = require('mocha');
 const chai = require('chai');
-const {show, showError, search} = require('../js/logic');
+const {kikstarter, show, showError, search} = require('../js/logic');
 const {JSDOM} = require('jsdom');
 const {spy} = require('sinon');
 const expect = chai.expect;
@@ -37,24 +35,6 @@ describe('Test functions', () => {
         return JSDOM.fromFile("index.html", options).then((dom) => {
             window = dom.window;
         });
-    });
-
-    it('Document weather render called correctly', () => {
-        JSDOM.fromFile("index.html", {runScripts: "dangerously", resources: "usable"}).then(dom => {
-            fetchMock.mock('*', mockSuccessResponse);
-            let callback = sinon.spy();
-            PubSub.subscribe("weatherRender", callback);
-            global.Handlebars = Handlebars;
-            global.document = dom.window.document;
-            global.weatherFetch = sinon.stub();
-            app.__get__('inputCallback')({
-                preventDefault: () => {
-                }, target: [{value: 'Moscow'}]
-            });
-            PubSub.publishSync("weatherRender");
-            assert.equal(callback.called, true);
-        });
-        fetchMock.reset();
     });
 
     it('show', () => {
